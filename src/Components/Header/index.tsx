@@ -9,11 +9,11 @@ export const Header = ({onOpenNewTransactionModal}: HeaderProps) => {
   return (
     <Container>
       <Content>
-        <h1 className="logo">Telzir</h1>
+        <h1 className="logo">List To-Do </h1>
         <Button 
           variant="contained" 
           style={{backgroundColor: "#5146af"}}
-          onClick={onOpenNewTransactionModal}>Adicionar chamada</Button>
+          onClick={onOpenNewTransactionModal}>Adicionar TO-DO</Button>
       </Content>
     </Container>
   );

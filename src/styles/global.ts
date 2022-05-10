@@ -35,12 +35,16 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     button{
-        cursor: pointer
+        cursor: pointer;
+        background: none;
+        border: 0;
+        padding: 0rem .2rem;
     }
 
     [disabled]{
         opacity: 0.6;
-        cursor: not-allowed
+        cursor: not-allowed;
+        
     }
 
     .react-modal-content{

@@ -2,10 +2,16 @@ import { useTransaction } from '../../hooks/useTransaction';
 
 import { Container, TableDiv } from "./style";
 
+import { FaTrashAlt } from 'react-icons/fa';
+
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export const DataTable = (): JSX.Element => {
-const {transactions} = useTransaction()
+const {transactions, removeTransaction} = useTransaction()
+
+const handleRemoveTransaction = (transactionId: number) => {
+  removeTransaction(transactionId)
+}
 
   return (
     <Container>
@@ -14,12 +20,9 @@ const {transactions} = useTransaction()
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Plano</TableCell>
-            <TableCell align="right">Origem</TableCell>
-            <TableCell align="right">Destino</TableCell>
-            <TableCell align="right">Tempo</TableCell>
-            <TableCell align="right">Valor com plano</TableCell>
-            <TableCell align="right">Valor sem plano</TableCell>
+            <TableCell sx={{ width: 'auto' }} align="center">To-Do</TableCell>
+            <TableCell sx={{ width: 'auto' }} align="center">Descrição</TableCell>
+            <TableCell sx={{ width: 'auto' }} align="center">Data</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -28,12 +31,11 @@ const {transactions} = useTransaction()
               key={transaction.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                FaleMais{transaction.plan}
+              <TableCell align="right">{transaction.title}</TableCell>
+              <TableCell align="right">{transaction.description}</TableCell>
+              <TableCell align="right">{new Intl.DateTimeFormat('pt-BR').format(new Date(transaction.createdAt))}
+                <button onClick={() => handleRemoveTransaction(transaction.id)}><FaTrashAlt/></button>
               </TableCell>
-              <TableCell align="right">{transaction.origin}</TableCell>
-              <TableCell align="right">{transaction.destiny}</TableCell>
-              <TableCell align="right">{transaction.time}</TableCell>
             </TableRow>
           ))}
         </TableBody>
